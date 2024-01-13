@@ -16,6 +16,11 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+/**
+ * 스프링 시큐리티에서는 회원이나 계정에 대해서 User라는 용어를 사용합니다.
+ * User라는 단어를 사용할 때는 상당히 주의해야 함.
+ */
+
 @Getter
 @Builder
 @NoArgsConstructor
