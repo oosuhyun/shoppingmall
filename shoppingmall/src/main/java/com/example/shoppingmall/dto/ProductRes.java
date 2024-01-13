@@ -1,5 +1,6 @@
 package com.example.shoppingmall.dto;
 
+import com.example.shoppingmall.entity.Member;
 import com.example.shoppingmall.entity.Product;
 import lombok.*;
 import org.springframework.stereotype.Component;
@@ -28,6 +29,7 @@ public class ProductRes {
     private String productCategory;
     private LocalDateTime createdDate;
     private LocalDateTime modifiedDate;
+    private Member member;
 
     public static ProductRes toDTO(Product product){
         return ProductRes.builder()
@@ -45,6 +47,7 @@ public class ProductRes {
                 .productCategory(product.getProductCategory())
                 .createdDate(product.getCreatedDate())
                 .modifiedDate(product.getModifiedDate())
+                .member(product.getMember())
                 .build();
     }
 }

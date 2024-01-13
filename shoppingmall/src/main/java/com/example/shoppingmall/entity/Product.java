@@ -2,12 +2,8 @@ package com.example.shoppingmall.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import javax.persistence.*;
+
 
 @Entity
 @Builder
@@ -31,5 +27,9 @@ public class Product extends BaseTime{
     private Long productRestCnt; // 재고
     private String productStatus; // default: "T"
     private String productCategory; //카테고리
+
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private Member member; //product와 member의 N:1 연관관계 생성
 
 }
