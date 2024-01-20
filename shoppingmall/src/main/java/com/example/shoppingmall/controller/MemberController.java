@@ -1,6 +1,7 @@
 package com.example.shoppingmall.controller;
 
 import com.example.shoppingmall.dto.MemberRes;
+import com.example.shoppingmall.dto.MemberUpdateReq;
 import com.example.shoppingmall.jwt.TokenDto;
 import com.example.shoppingmall.dto.MemberJoinReq;
 import com.example.shoppingmall.dto.MemberLoginReq;
@@ -47,9 +48,17 @@ public class MemberController {
                 .ok(memberService.findByMemberId(auth.getName()));
     }
 
-
     @PostMapping("/test")
     public String test() {
         return "sucess";
     }
+
+    //내 정보 수정
+    @PutMapping("/update")
+    public ResponseEntity<?> update(@RequestBody MemberUpdateReq req){
+        memberService.update(req);
+        return new ResponseEntity<>("내 정보 업데이트 성공", HttpStatus.OK);
+
+    }
+
 }

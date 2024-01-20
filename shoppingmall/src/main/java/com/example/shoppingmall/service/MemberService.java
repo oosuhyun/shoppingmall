@@ -2,6 +2,7 @@ package com.example.shoppingmall.service;
 
 import com.example.shoppingmall.dto.MemberJoinReq;
 import com.example.shoppingmall.dto.MemberRes;
+import com.example.shoppingmall.dto.MemberUpdateReq;
 import com.example.shoppingmall.entity.Member;
 import com.example.shoppingmall.jwt.JwtTokenProvider;
 import com.example.shoppingmall.jwt.TokenDto;
@@ -66,6 +67,22 @@ public class MemberService {
                 .orElseThrow(EntityExistsException::new);
 
         return MemberRes.toDTO(member);
+    }
+
+    //내 정보 수정
+    public void update(MemberUpdateReq req){
+        Member member = memberRepository.findById(req.getId())
+                .orElseThrow(EntityExistsException::new);
+        member.setMemberId(req.getMemberId());
+        member.setMemberName(req.getMemberName());
+        member.setMemberTel(req.getMemberTel());
+        member.setMemberGender(req.getMemberGender());
+        member.setMemberZipCode(req.getMemberZipCode());
+        member.setMemberAddress(req.getMemberAddress());
+        member.setMemberAddressDetail(req.getMemberAddressDetail());
+        member.setMemberRequirements(req.getMemberRequirements());
+
+        memberRepository.save(member);
     }
 
 }

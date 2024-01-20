@@ -7,14 +7,10 @@ import java.util.stream.Collectors;
 
 import javax.persistence.*;
 
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 /**
  * 스프링 시큐리티에서는 회원이나 계정에 대해서 User라는 용어를 사용합니다.
@@ -22,6 +18,7 @@ import lombok.NoArgsConstructor;
  */
 
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
