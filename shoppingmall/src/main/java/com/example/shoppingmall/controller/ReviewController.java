@@ -11,6 +11,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,8 +22,12 @@ public class ReviewController {
 
     //후기 생성
     @PostMapping
-    public ResponseEntity<Void> create(@RequestBody ReviewReq req){
-        reviewService.create(req);
+    public ResponseEntity<Void> create(
+            @RequestPart(value = "req") ReviewReq req,
+            @RequestPart(value = "file") MultipartFile multipartFile
+    ){
+        String imgURL = reviewService.uploadFile(multipartFile);
+        reviewService.create(req, imgURL);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .build();
