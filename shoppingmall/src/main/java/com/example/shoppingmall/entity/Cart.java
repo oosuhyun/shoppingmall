@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cart extends BaseTime{
+public class Cart{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
