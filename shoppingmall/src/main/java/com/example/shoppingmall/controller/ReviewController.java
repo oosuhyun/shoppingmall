@@ -2,6 +2,7 @@ package com.example.shoppingmall.controller;
 
 import com.example.shoppingmall.dto.ReviewReq;
 import com.example.shoppingmall.dto.ReviewRes;
+import com.example.shoppingmall.service.PhotoService;
 import com.example.shoppingmall.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class ReviewController {
 
     private final ReviewService reviewService;
+    private final PhotoService photoService;
 
     //후기 생성
     @PostMapping
@@ -26,7 +28,7 @@ public class ReviewController {
             @RequestPart(value = "req") ReviewReq req,
             @RequestPart(value = "file") MultipartFile multipartFile
     ){
-        String imgURL = reviewService.uploadFile(multipartFile);
+        String imgURL = photoService.uploadFile(multipartFile);
         reviewService.create(req, imgURL);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
