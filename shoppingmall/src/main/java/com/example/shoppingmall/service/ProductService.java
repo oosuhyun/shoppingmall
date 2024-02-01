@@ -22,9 +22,10 @@ public class ProductService {
     private final MemberRepository memberRepository;
 
     // 상품 생성
-    public void create(ProductReq req){
+    public void create(ProductReq req, String imgURL){
         Member member = memberRepository.findById(req.getId())
                         .orElseThrow(EntityExistsException::new);
+        req.setProductImg(imgURL);
         productRepository.save(req.toEntity(req, member));
     }
 

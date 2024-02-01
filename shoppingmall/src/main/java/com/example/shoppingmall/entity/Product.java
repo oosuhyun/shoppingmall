@@ -17,11 +17,7 @@ public class Product extends BaseTime{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long productId;
     private String productName; //상품명
-    private String productImg1; //상품 이미지
-    private String productImg2;
-    private String productImg3;
-    private String productImg4;
-    private String productImg5;
+    private String productImg; //상품 이미지
     private String productDescription; //상품 설명
     private Long productPrice; //상품 가격
     private Long productRestCnt; // 재고
