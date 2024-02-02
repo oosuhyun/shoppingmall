@@ -43,6 +43,12 @@ public class ProductService {
                 .map(ProductRes::toDTO);
     }
 
+    //상품 이름 키워드 검색
+    public Page<ProductRes> findByProductNameContaining(String keyword, Pageable pageable){
+        return productRepository.findByProductNameContaining(keyword, pageable)
+                .map(ProductRes::toDTO);
+    }
+
     //판매 중지 or 재고 없음
     public void stop(Long id){
         Product product = productRepository.findById(id)

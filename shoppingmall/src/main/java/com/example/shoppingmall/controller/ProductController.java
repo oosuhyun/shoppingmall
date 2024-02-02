@@ -44,7 +44,7 @@ public class ProductController {
 
     //특정 카테고리 조회-페이지네이션
     //판매 중인 것만 표기
-    @GetMapping
+    @GetMapping("/filter")
     public ResponseEntity<Page<ProductRes>> getByProductCategoryAndProductStatus(
             @RequestParam("category") String category,
             @PageableDefault(sort = {"createdDate"}, direction = Sort.Direction.DESC)
@@ -52,6 +52,17 @@ public class ProductController {
     ){
         return ResponseEntity
                 .ok(productService.findByProductCategoryAndProductStatus(category, "T", pageable));
+    }
+
+    //상품 이름 키워드 검색
+    @GetMapping("/search")
+    public ResponseEntity<Page<ProductRes>> getByProductNameContaining(
+            @RequestParam("keyword") String keyword,
+            @PageableDefault(sort = {"createdDate"}, direction = Sort.Direction.DESC)
+            Pageable pageable
+    ){
+        return ResponseEntity
+                .ok(productService.findByProductNameContaining(keyword, pageable));
     }
 
     //판매 중지 or 재고 없음

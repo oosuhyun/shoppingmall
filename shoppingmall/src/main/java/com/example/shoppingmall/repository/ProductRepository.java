@@ -12,4 +12,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     //판매 중인 것만 표기
     Page<Product> findByProductCategoryAndProductStatus(String category, String status, Pageable pageable);
 
+    //상품 이름 키워드 검색
+    Page<Product> findByProductNameContaining(String keyword, Pageable pageable);
+
 }
