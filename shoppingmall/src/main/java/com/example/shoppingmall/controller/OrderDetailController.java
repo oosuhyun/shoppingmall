@@ -27,7 +27,7 @@ public class OrderDetailController {
         return new ResponseEntity<>(str, HttpStatus.OK);
     }
 
-    //전체 상품 장바구니 -> 주문상품으로 등록
+    //일부 상품 장바구니 -> 주문상품으로 등록
     @PostMapping("/some")
     public ResponseEntity<String> createSome(@RequestParam List<Long> ids){
         String str = orderDetailService.createRandomNumber();
