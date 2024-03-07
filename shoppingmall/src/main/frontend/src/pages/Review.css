@@ -1,0 +1,75 @@
+.review-div {
+    width: 40%;
+    margin: 50px auto;
+    border: 3px solid #DEE6D6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background: #DEE6D6;
+    height: auto;
+}
+
+.review-byOne-div {
+    display: flex;
+    flex-direction: column;
+    background: #DEE6D6;
+    width: 90%;
+}
+
+.review-byOne-button {
+    border: none;
+    border-radius: 8px;
+    background: #FFFFFF;
+    color: #2A0C37;
+    margin: 5px;
+}
+
+.review-byOne-div2 {
+    display: flex;
+    flex-direction: row;
+}
+
+.review-byOne-img {
+    width: 25%;
+    margin: 5px;
+}
+
+.review-register-div {
+    border: #2A0C37 solid 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    margin: 2%;
+}
+
+.review-register-textarea {
+    display: flex;
+    width: 90%;
+    height: auto;
+    margin: 3%;
+}
+
+.review-register-button {
+    width: 30%;
+    height: 100%;
+    border: 1px solid #2A0C37;
+    border-radius: 2px;
+    outline: none;
+    font-size: 14px;
+    background: #C5E1CF;
+    color: black;
+    margin: 5%;
+}
+
+.review-byOne-div3 {
+    display: flex;
+    width: 100%;
+    height: auto;
+    border: #C5E1CF dashed 3px;
+    float: left;
+    flex-direction: column;
+}

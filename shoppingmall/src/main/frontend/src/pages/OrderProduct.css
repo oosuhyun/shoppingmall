@@ -1,0 +1,29 @@
+.orderProduct-div {
+    margin: 50px auto 0;
+    width: 40%;
+    height: auto;
+    background: #C5E1CF;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: #2A0C37 solid 1px;
+    border-radius: 2px;
+    padding: 5px;
+}
+
+.orderProduct-button {
+    width: 90%;
+    height: 50%;
+    border: none;
+    border-radius: 8px;
+    background: #FFFFFF;
+    color: #2A0C37;
+    margin: 5%;
+}
+
+.orderProduct-div2 {
+    width: auto;
+    height: auto;
+    padding: 1%;
+}

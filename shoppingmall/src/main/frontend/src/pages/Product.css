@@ -1,0 +1,112 @@
+.img-container {
+    width: 50%;
+    height: 300px;
+    margin: 5px auto;
+    border: 0px solid #495F51;
+    border-bottom-width: 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-img {
+    width: auto;
+    height: 100%;
+    padding: 5px;
+}
+
+.name-container {
+    width: 50%;
+    height: 50px;
+    margin: 5px auto;
+    border: 0px solid #495F51;
+    border-bottom-width: 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.description-container {
+    width: 50%;
+    height: 50px;
+    margin: 5px auto;
+    border: 0px solid #495F51;
+    border-bottom-width: 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.price-container {
+    width: 50%;
+    height: 50px;
+    margin: 5px auto;
+    border: 0px solid #495F51;
+    border-bottom-width: 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-container {
+    width: 50%;
+    height: 50px;
+    margin: 5px auto;
+    border: 0px solid #495F51;
+    border-bottom-width: 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10%;
+
+}
+
+.modal-button {
+    border-radius: 50px;
+}
+
+.modal-div2 {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 10%;
+}
+
+.modal-button-close {
+    margin-left: 5%;
+}
+
+.product-button {
+    width: 30%;
+    height: 100%;
+    border: 1px solid #2A0C37;
+    border-radius: 2px;
+    outline: none;
+    font-size: 14px;
+    background: #C5E1CF;
+    color: black;
+    margin: 0px auto;
+}
+
+.product-button-div {
+    width: 60%;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
