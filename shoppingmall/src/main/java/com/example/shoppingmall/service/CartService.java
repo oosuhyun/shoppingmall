@@ -59,10 +59,26 @@ public class CartService {
         for (Long id : ids){
             Cart cart = cartRepository.findById(id)
                     .orElseThrow(EntityExistsException::new);
-            cartResList.add(CartRes.toDTO(cart));
+            CartRes cartRes = CartRes.toDTO(cart);
+            cartResList.add(cartRes);
         }
 
         return cartResList;
+    }
+
+    //총 주문가격 조회
+    public Long findPrice(List<Long> ids){
+
+        Long totalPrice = Long.valueOf(0);
+
+        for (Long id : ids){
+            Cart cart = cartRepository.findById(id)
+                    .orElseThrow(EntityExistsException::new);
+            CartRes cartRes = CartRes.toDTO(cart);
+            totalPrice += cartRes.getCnt() * cartRes.getProduct().getProductPrice();
+        }
+
+        return totalPrice;
     }
 
     //장바구니-상품 삭제

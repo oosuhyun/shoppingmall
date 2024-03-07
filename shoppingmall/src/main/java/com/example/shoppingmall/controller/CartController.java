@@ -40,6 +40,13 @@ public class CartController {
                 .ok(cartService.findSome(ids));
     }
 
+    //주문할 장바구니 상품 조회
+    @GetMapping("/somePrice")
+    public ResponseEntity<Long> getPrice(@RequestParam List<Long> ids){
+        return ResponseEntity
+                .ok(cartService.findPrice(ids));
+    }
+
     //장바구니-상품 삭제
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteById(@PathVariable Long id){
