@@ -94,7 +94,7 @@ function Product() {
         if(person == null){
             window.alert("로그인 후 이용해주세요.");
         } else{
-            navigate('/order', {state:{id: 1, cnt: cnt, product: product, price: product.price}});
+            navigate('/order', {state:{id: 1, cnt: cnt, product: product, price: product.productPrice*cnt}});
         }
     };
 

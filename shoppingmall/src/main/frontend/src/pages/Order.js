@@ -60,9 +60,6 @@ const Order = () => {
         const { IMP } = window;
         IMP.init('imp82482774');
 
-        //결제 완료 확인 변수
-        let check = 0;
-
         IMP.request_pay({
             pg: 'kakaopay',
             pay_method: 'card',
@@ -78,78 +75,85 @@ const Order = () => {
             try {
                 const { data } = await axios.post('/api/pay/verify/' + rsp.imp_uid);
                 if (rsp.paid_amount === data.response.amount) {
-                    alert('결제 성공');
-                    check = 1;
+
+
+
+
+                    // alert('결제 성공');
+                    //결제 완료 후 주문 데이터 생성
+                    if(id == 1){
+                        axios.post("/api/orderDetail", {
+                            orderDetailPrice: product.productPrice,
+                            orderDetailCnt: cnt,
+                            productId: product.productId
+                        })
+                            .then(r => {
+                                console.log(r);
+                                axios.post("/api/order", {
+                                    orderId: r.data,
+                                    memberName: person.memberName,
+                                    memberTel: person.memberTel,
+                                    memberGender: person.memberGender,
+                                    memberZipCode: person.memberZipCode,
+                                    memberAddress: person.memberAddress,
+                                    memberAddressDetail: person.memberAddressDetail,
+                                    memberRequirements: person.memberRequirements,
+                                    memberId: person.id
+                                })
+                                    .then(r => {
+                                        console.log(r);
+                                        window.alert("주문 완료되었습니다.");
+                                        navigate('/main');
+                                    })
+                                    .catch(e => {
+                                        console.log(e);
+                                        window.alert("주문 실패하셨습니다.");
+                                    });
+                            })
+                            .catch(e => {
+                                console.log(e);
+                            });
+                    } else if(id == 2){
+                        axios.post("/api/orderDetail/some",null,{params: {ids: checkItems.join(",")}})
+                            .then(r => {
+                                console.log(r);
+                                axios.post("/api/order", {
+                                    orderId: r.data,
+                                    memberName: person.memberName,
+                                    memberTel: person.memberTel,
+                                    memberGender: person.memberGender,
+                                    memberZipCode: person.memberZipCode,
+                                    memberAddress: person.memberAddress,
+                                    memberAddressDetail: person.memberAddressDetail,
+                                    memberRequirements: person.memberRequirements,
+                                    memberId: person.id
+                                })
+                                    .then(r => {
+                                        console.log(r);
+                                        window.alert("주문 완료되었습니다.");
+                                    })
+                                    .catch(e => {
+                                        console.log(e);
+                                        window.alert("주문 실패하셨습니다.");
+                                    });
+                            })
+                            .catch(e => {
+                                console.log(e);
+                            });
+                    }
+
+
+
                 } else {
-                    alert('결제 실패');
+                    // alert('결제 실패');
                 }
             } catch (error) {
                 console.error('Error while verifying payment:', error);
-                alert('결제 실패');
+                // alert('결제 실패');
             }
         });
 
-        //결제 완료 후 주문 데이터 생성
-        if(check==1 && id == 1){
-            axios.post("/api/orderDetail", {
-                orderDetailPrice: product.productPrice,
-                orderDetailCnt: cnt,
-                productId: product.productId
-            })
-                .then(r => {
-                    console.log(r);
-                    axios.post("/api/order", {
-                        orderId: r.data,
-                        memberName: person.memberName,
-                        memberTel: person.memberTel,
-                        memberGender: person.memberGender,
-                        memberZipCode: person.memberZipCode,
-                        memberAddress: person.memberAddress,
-                        memberAddressDetail: person.memberAddressDetail,
-                        memberRequirements: person.memberRequirements,
-                        memberId: person.id
-                    })
-                        .then(r => {
-                            console.log(r);
-                            window.alert("주문 완료되었습니다.");
-                            navigate('/main');
-                        })
-                        .catch(e => {
-                            console.log(e);
-                            window.alert("주문 실패하셨습니다.");
-                        });
-                })
-                .catch(e => {
-                    console.log(e);
-                });
-        } else if(check==1 &&  id == 2){
-            axios.post("/api/orderDetail/some",null,{params: {ids: checkItems.join(",")}})
-                .then(r => {
-                    console.log(r);
-                    axios.post("/api/order", {
-                        orderId: r.data,
-                        memberName: person.memberName,
-                        memberTel: person.memberTel,
-                        memberGender: person.memberGender,
-                        memberZipCode: person.memberZipCode,
-                        memberAddress: person.memberAddress,
-                        memberAddressDetail: person.memberAddressDetail,
-                        memberRequirements: person.memberRequirements,
-                        memberId: person.id
-                    })
-                        .then(r => {
-                            console.log(r);
-                            window.alert("주문 완료되었습니다.");
-                        })
-                        .catch(e => {
-                            console.log(e);
-                            window.alert("주문 실패하셨습니다.");
-                        });
-                })
-                .catch(e => {
-                    console.log(e);
-                });
-        }
+
     };
 
     return (

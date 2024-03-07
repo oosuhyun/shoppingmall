@@ -4,7 +4,6 @@ const Footer = () => {
     return (
         <footer>
             <hr/>
-            푸터 입니다.
         </footer>
     );
 };

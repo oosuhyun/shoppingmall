@@ -12,6 +12,8 @@ const Cart = () => {
     const [checkItems, setCheckItems] = useState([]);
     const navigate = useNavigate();
     const [product, setProduct] = useState([]);
+    const [totalPrice, setTotalPrice] = useState(0);
+
 
 
     //처음 한 번만 실행
@@ -63,6 +65,15 @@ const Cart = () => {
 
     //주문하기 버튼 클릭
     const onOrderClick = () => {
+        axios.get("/api/cart/somePrice",{params: {ids:checkItems.join(",")}})
+            .then(r => {
+                console.log(r);
+                setTotalPrice(r.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+
         axios.get("/api/cart/some",{params: {ids:checkItems.join(",")}})
             .then(r => {
                 console.log(r);
@@ -76,13 +87,7 @@ const Cart = () => {
     //product state 값이 변경됐을 때마다 실행
     useEffect(()=>{
         if(product.length != 0){
-            // let totalPrice = 0;
-            // for(let i in product){
-            //     totalPrice = product[1].cnt * i.product.productPrice;
-            //     console.log(i);
-            // }
-            // console.log(totalPrice);
-            navigate('/order', {state:{id: 2, checkItems: checkItems, cartProduct: product}});
+            navigate('/order', {state:{id: 2, checkItems: checkItems, cartProduct: product, price: totalPrice}});
         }
 
     },[product]);
