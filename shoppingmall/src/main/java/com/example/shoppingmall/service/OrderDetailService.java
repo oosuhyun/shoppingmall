@@ -28,7 +28,7 @@ public class OrderDetailService {
     private final ProductRepository productRepository;
     private final CartRepository cartRepository;
 
-    //주문 상품 등록
+    //단일 상품 주문 등록
     public void create(OrderDetailReq req, String str){
         Product product = productRepository.findById(req.getProductId())
                 .orElseThrow(EntityExistsException::new);
@@ -43,7 +43,7 @@ public class OrderDetailService {
         orderDetailRepository.save(req.toEntity(req, product));
     }
 
-    //일부 상품 장바구니 -> 주문상품으로 등록
+    //카트 상품 장바구니 -> 주문상품으로 등록
     public void createSome(List<Long> ids, String str){
 
         for (Long id : ids){
@@ -68,34 +68,6 @@ public class OrderDetailService {
 
             //장바구니 비우기
             cartRepository.deleteById(cart.getCartId());
-        }
-    }
-
-    //전체 상품 장바구니 -> 주문상품으로 등록
-    public void createAll(Long id, String str){
-
-        List<Cart> cartList = cartRepository.findByMember_Id(id);
-
-        for (Cart cart : cartList){
-
-            //cart entity -> orderDetail entity 변환
-            OrderDetail orderDetail = OrderDetailReq.cartToEntity(cart);
-
-            //동일한 주문 번호로 저장
-            orderDetail.setOrderId(str);
-
-            //db에 저장
-            orderDetailRepository.save(orderDetail);
-
-            //재고 수량 수정
-            Product product =  productRepository.findById(orderDetail.getProduct().getProductId())
-                    .orElseThrow(EntityExistsException::new);
-            product.setProductRestCnt(product.getProductRestCnt() - orderDetail.getOrderDetailCnt());
-            productRepository.save(product);
-
-            //장바구니 비우기
-            cartRepository.deleteById(cart.getCartId());
-
         }
     }
 

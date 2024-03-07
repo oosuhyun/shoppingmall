@@ -33,6 +33,13 @@ public class CartController {
                 .ok(cartService.findByMember_Id(id));
     }
 
+    //주문할 장바구니 상품 조회
+    @GetMapping("/some")
+    public ResponseEntity<List<CartRes>> getSome(@RequestParam List<Long> ids){
+        return ResponseEntity
+                .ok(cartService.findSome(ids));
+    }
+
     //장바구니-상품 삭제
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteById(@PathVariable Long id){

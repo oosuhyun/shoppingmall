@@ -22,7 +22,7 @@ public class PhotoService {
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");
 
         //업로드 할 폴더 지정
-        String uploadFolder = "C:\\upload\\";
+        String uploadFolder = "C:\\Users\\USER\\springboot\\shoppingmall\\shoppingmall\\src\\main\\frontend\\public\\images";
 
         //새폴더 생성
         File dir = new File(uploadFolder);
@@ -59,7 +59,9 @@ public class PhotoService {
             e.printStackTrace();
         }
 
-        return fileRename.toString();
+        String imgUrl = "/images/"+uploadFileName;
+
+        return imgUrl.toString();
     }
 
 }

@@ -47,7 +47,7 @@ public class ProductController {
     @GetMapping("/filter")
     public ResponseEntity<Page<ProductRes>> getByProductCategoryAndProductStatus(
             @RequestParam("category") String category,
-            @PageableDefault(sort = {"createdDate"}, direction = Sort.Direction.DESC)
+            @PageableDefault(size = 9, sort = {"createdDate"}, direction = Sort.Direction.DESC)
             Pageable pageable
     ){
         return ResponseEntity
@@ -58,7 +58,7 @@ public class ProductController {
     @GetMapping("/search")
     public ResponseEntity<Page<ProductRes>> getByProductNameContaining(
             @RequestParam("keyword") String keyword,
-            @PageableDefault(sort = {"createdDate"}, direction = Sort.Direction.DESC)
+            @PageableDefault(size = 9, sort = {"createdDate"}, direction = Sort.Direction.DESC)
             Pageable pageable
     ){
         return ResponseEntity

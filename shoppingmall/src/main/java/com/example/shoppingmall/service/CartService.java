@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityExistsException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -48,6 +49,20 @@ public class CartService {
                 .stream()
                 .map(CartRes::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    //주문할 장바구니 상품 조회
+    public List<CartRes> findSome(List<Long> ids){
+
+        List<CartRes> cartResList = new ArrayList<>();
+
+        for (Long id : ids){
+            Cart cart = cartRepository.findById(id)
+                    .orElseThrow(EntityExistsException::new);
+            cartResList.add(CartRes.toDTO(cart));
+        }
+
+        return cartResList;
     }
 
     //장바구니-상품 삭제

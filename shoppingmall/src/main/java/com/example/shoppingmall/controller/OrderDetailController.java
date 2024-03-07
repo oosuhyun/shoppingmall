@@ -19,7 +19,7 @@ public class OrderDetailController {
 
     private final OrderDetailService orderDetailService;
 
-    //주문 상품 등록
+    //단일 상품 주문 등록
     @PostMapping
     public ResponseEntity<String> create(@RequestBody OrderDetailReq req){
         String str = orderDetailService.createRandomNumber();
@@ -27,19 +27,11 @@ public class OrderDetailController {
         return new ResponseEntity<>(str, HttpStatus.OK);
     }
 
-    //일부 상품 장바구니 -> 주문상품으로 등록
+    //카트 상품 장바구니 -> 주문상품으로 등록
     @PostMapping("/some")
     public ResponseEntity<String> createSome(@RequestParam List<Long> ids){
         String str = orderDetailService.createRandomNumber();
         orderDetailService.createSome(ids, str);
-        return new ResponseEntity<>(str, HttpStatus.OK);
-    }
-
-    //전체 상품 장바구니 -> 주문상품으로 등록
-    @PostMapping("/all")
-    public ResponseEntity<String> createAll(@RequestParam Long id){
-        String str = orderDetailService.createRandomNumber();
-        orderDetailService.createAll(id, str);
         return new ResponseEntity<>(str, HttpStatus.OK);
     }
 
